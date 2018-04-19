@@ -1,0 +1,30 @@
+{
+  "name": "onethirtyone/repository-pattern",
+  "description": "An artisan command interface for generating Laravel repository pattern modules",
+  "authors": [
+    {
+      "name": "Robb Fountain",
+      "email": "robb@131studios.com"
+    }
+  ],
+  "keywords": [
+    "backpack",
+    "Laravel"
+  ],
+  "license": "MIT",
+  "require": {
+    "laravel/framework": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "onethirtyone\\repository\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "onethirtyone\\repository\\RepositoryProvider"
+      ]
+    }
+  }
+}

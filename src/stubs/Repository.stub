@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Repositories;
+
+use onethirtyone\repository\Contracts\RepositoryContract;
+:dep-inj-use:
+
+class :repository: implements RepositoryContract
+{
+
+    protected $:model:;
+
+    /**
+     * constructor.
+     *
+     */
+    public function __construct (:dep-inj:)
+    {
+        //
+    }
+
+    /**
+     * @param $data
+     *
+     * @return :repository:
+     */
+    public static function create ($data)
+    {
+        //
+
+        return new :repository:($:repository:);
+    }
+
+    /**
+     * @param $id
+     *
+     * @return Payment
+     */
+    public static function find ($id)
+    {
+        //
+        return new :repository:($:repository:);
+    }
+
+    /**
+     * @param $name
+     *
+     * @return mixed
+     */
+    public function get ($name)
+    {
+        //
+        return $this->:model:->{$name};
+    }
+
+    /**
+     * @param $name
+     *
+     * @return mixed
+     */
+    public function __get ($name)
+    {
+        return $this->get($name);
+    }
+
+    public function __toString()
+    {
+        return $this->:model:->toJson();
+    }
+
+}
