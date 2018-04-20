@@ -17,7 +17,7 @@ class RepositoryTest extends TestCase
         $this->assertTrue(is_file(app_path('Repositories/otoTestRepository.php')));
 
         unlink(app_path('Repositories/otoTestRepository.php'));
-        if (scandir(app_path('Repositories')) == 2) {
+        if (count(scandir(app_path('Repositories'))) == 2) {
             rmdir(app_path('Repositories'));
         }
     }
@@ -33,7 +33,7 @@ class RepositoryTest extends TestCase
 
         unlink(app_path('Repositories/otoTestRepository.php'));
         unlink(app_path('otoTest.php'));
-        if (scandir(app_path('Repositories')) == 2) {
+        if (count(scandir(app_path('Repositories'))) == 2) {
             rmdir(app_path('Repositories'));
         }
     }
