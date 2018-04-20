@@ -7,9 +7,9 @@ before_install:
   - composer self-update
   - composer create-project laravel/laravel
   - cd ./laravel
-   - composer config repositories.rgf207 vcs https://github.com/rgf207/repository-pattern.git
+  - composer config repositories.rgf207 vcs https://github.com/rgf207/repository-pattern.git
   - composer require onethirtyone/repository-pattern dev-master
   - composer update
   - cd ./vendor/onethirtyone/repository-pattern/tests
 
-script: "phpunit RepositoryTest.php"
+script: "../../../vendor/bin/phpunit RepositoryTest.php"
