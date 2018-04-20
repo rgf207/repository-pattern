@@ -3,43 +3,47 @@
 namespace App\Repositories;
 
 use onethirtyone\repository\Contracts\RepositoryContract;
-:dep-inj-use:
+use App\Dummy;
 
-class :repository: implements RepositoryContract
+class DummyRepository implements RepositoryContract
 {
-
-    protected $:model:;
+    /**
+    * @var dummy
+    */
+    protected $dummy;
 
     /**
-     * constructor.
+     * Constructor
      *
+     * @param Dummy $dummy
      */
-    public function __construct (:dep-inj:)
+    public function __construct (Dummy $dummy)
     {
-        //
+        $this->dummy = $dummy;
     }
 
     /**
      * @param $data
      *
-     * @return :repository:
+     * @return DummyRepository
      */
     public static function create ($data)
     {
-        //
+        $model = Dummy::create($data->all());
 
-        return new :repository:($:repository:);
+        return new DummyRepository($model);
     }
 
     /**
      * @param $id
      *
-     * @return Payment
+     * @return DummyRepository
      */
     public static function find ($id)
     {
-        //
-        return new :repository:($:repository:);
+        $model = Dummy::findOrFail($id);
+
+        return new DummyRepository($model);
     }
 
     /**
@@ -49,8 +53,7 @@ class :repository: implements RepositoryContract
      */
     public function get ($name)
     {
-        //
-        return $this->:model:->{$name};
+        return $this->dummy->{$name};
     }
 
     /**
@@ -63,9 +66,12 @@ class :repository: implements RepositoryContract
         return $this->get($name);
     }
 
+    /**
+    * @return mixed|string
+    */
     public function __toString()
     {
-        return $this->:model:->toJson();
+        return $this->dummy->toJson();
     }
 
 }
