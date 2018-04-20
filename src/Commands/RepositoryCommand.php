@@ -12,7 +12,7 @@ class RepositoryCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'onethirtyone:make-repository {name : The name of the repository} {--m|model=null : Create associated model with repository}';
+    protected $signature = 'onethirtyone:make-repository {name : The name of the repository} {--m|model : Create associated model with repository}';
 
     /**
      * The console command description.
@@ -26,7 +26,7 @@ class RepositoryCommand extends Command
      *
      * @return void
      */
-    public function __construct ()
+    public function __construct()
     {
         parent::__construct();
     }
@@ -36,39 +36,43 @@ class RepositoryCommand extends Command
      *
      * @return mixed
      */
-    public function handle ()
+    public function handle()
     {
         if ($this->repositoryDirectoryExists()) {
-            if ($this->makeRepository($this->argument('name')) && $this->makeModel($this->option('model'))) {
+            if ($this->makeRepository($this->argument('name')) && $this->makeModel()) {
                 $this->comment('Repository Created');
-            }
-            else {
+            } else {
                 $this->error('Could not create repository');
             }
         }
     }
 
-    public function repositoryDirectoryExists ()
+    public function repositoryDirectoryExists()
     {
         return is_dir(app_path('Repositories')) ? true : $this->createRepositoryDirectory();
     }
 
-    public function createRepositoryDirectory ()
+    public function createRepositoryDirectory()
     {
         return mkdir(app_path('Repositories'));
     }
 
-    public function makeModel ($name)
+    public function makeModel()
     {
-        return $name ? Artisan::call('make:model', ['name' => $name]) : true;
+        if ($this->option('model')) {
+            Artisan::call('make:model', ['name' => $this->argument('name'), '--quiet' => true]);
+            $this->comment('Model Created Successfully');
+        }
+
+        return true;
     }
 
-    public function makeRepository ($name)
+    public function makeRepository($name)
     {
         if ($file = fopen($this->repositoryPath($name), 'w')) {
             return fwrite($file, str_replace(
                 $this->replaceTerms(),
-                $this->replaceValues($name, $this->option('model')),
+                $this->replaceValues($name),
                 file_get_contents($this->stubPath('Repository'))));
         }
 
@@ -77,34 +81,29 @@ class RepositoryCommand extends Command
         return false;
     }
 
-    public function repositoryPath ($name)
+    public function repositoryPath($name)
     {
         return app_path('Repositories') . "/{$name}.php";
     }
 
-    public function replaceTerms ()
+    public function replaceTerms()
     {
         return [
-            ':dep-inj-use:',
-            ':repository:',
-            ':model:',
-            ':dep-inj:',
+            'dummy',
+            'Dummy'
         ];
     }
 
-    public function replaceValues ($repo, $model)
+    public function replaceValues($repo)
     {
-        $modelName = $model ?? 'model';
 
         return [
-            $model ? "use App\\{$model};" : '',
-            "{$repo}",
-            "{$modelName}",
-            $model ? "{$model} $" . strtolower($model) : '',
+            strtolower($repo),
+            title_case($repo),
         ];
     }
 
-    public function stubPath ($name)
+    public function stubPath($name)
     {
         return dirname(__DIR__) . "/stubs/{$name}.stub";
     }
