@@ -10,6 +10,5 @@ before_install:
   - composer config repositories.rgf207 vcs https://github.com/rgf207/repository-pattern.git
   - composer require onethirtyone/repository-pattern dev-master
   - composer update
-  - cd ./vendor/onethirtyone/repository-pattern/tests
 
 script: "phpunit ./vendor/onethirtyone/repository-pattern/tests/RepositoryTest.php"
