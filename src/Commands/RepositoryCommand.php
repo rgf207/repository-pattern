@@ -102,7 +102,7 @@ class RepositoryCommand extends Command
      */
     public function repositoryPath($name)
     {
-        return app_path('Repositories') . "/{$name}.php";
+        return app_path('Repositories') . "/{$name}Repository.php";
     }
 
     /**
