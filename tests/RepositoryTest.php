@@ -1,12 +1,13 @@
 <?php
 
-use Illuminate\Foundation\Testing\TestCase;
 use Illuminate\Support\Facades\Artisan;
-use Tests\CreatesApplication;
 
-class RepositoryTest extends TestCase
+class RepositoryTest extends Orchestra\Testbench\TestCase
 {
-    use CreatesApplication;
+    protected function getPackageProviders ($app)
+    {
+        return [onethirtyone\repository\RepositoryProvider::class];
+    }
 
     /** @test */
     public function it_creates_a_repository_directory_and_repository_class ()
