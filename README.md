@@ -1,5 +1,8 @@
 # OneThirtyOne/Repository-Pattern
-Simple Artisan command to create repository pattern modules for Laravel app
+[![StyleCI](https://styleci.io/repos/130260748/shield?branch=master)](https://styleci.io/repos/130260748)
+
+Simple Artisan command to create repository pattern modules for Laravel application.  Run 
+`php artisan onethirtyone:create-repository Test -m` to create `App\Repositories\TestRepository.php` ad associated `App\Test.php` Model.  Omit the `-m` option to skip creating the model.
 
 ##Installation
 Install using composer

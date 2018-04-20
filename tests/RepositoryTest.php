@@ -7,7 +7,7 @@ use Tests\CreatesApplication;
 class RepositoryTest extends TestCase
 {
     use CreatesApplication;
-    
+
     /** @test */
     public function it_creates_a_repository_directory_and_repository_class ()
     {
