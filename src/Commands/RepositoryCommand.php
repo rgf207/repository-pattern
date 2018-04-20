@@ -47,16 +47,25 @@ class RepositoryCommand extends Command
         }
     }
 
+    /**
+     * @return bool
+     */
     public function repositoryDirectoryExists()
     {
         return is_dir(app_path('Repositories')) ? true : $this->createRepositoryDirectory();
     }
 
+    /**
+     * @return bool
+     */
     public function createRepositoryDirectory()
     {
         return mkdir(app_path('Repositories'));
     }
 
+    /**
+     * @return bool
+     */
     public function makeModel()
     {
         if ($this->option('model')) {
@@ -67,6 +76,10 @@ class RepositoryCommand extends Command
         return true;
     }
 
+    /**
+     * @param $name
+     * @return bool|int
+     */
     public function makeRepository($name)
     {
         if ($file = fopen($this->repositoryPath($name), 'w')) {
@@ -81,11 +94,18 @@ class RepositoryCommand extends Command
         return false;
     }
 
+    /**
+     * @param $name
+     * @return string
+     */
     public function repositoryPath($name)
     {
         return app_path('Repositories') . "/{$name}.php";
     }
 
+    /**
+     * @return array
+     */
     public function replaceTerms()
     {
         return [
@@ -94,6 +114,10 @@ class RepositoryCommand extends Command
         ];
     }
 
+    /**
+     * @param $repo
+     * @return array
+     */
     public function replaceValues($repo)
     {
 
@@ -103,6 +127,10 @@ class RepositoryCommand extends Command
         ];
     }
 
+    /**
+     * @param $name
+     * @return string
+     */
     public function stubPath($name)
     {
         return dirname(__DIR__) . "/stubs/{$name}.stub";
