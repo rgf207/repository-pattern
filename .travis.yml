@@ -11,4 +11,4 @@ before_install:
   - composer require onethirtyone/repository-pattern dev-master
   - composer update
 
-script: "phpunit ./vendor/onethirtyone/repository-pattern/tests/RepositoryTest.php"
+script: "phpunit ./vendor/onethirtyone/repository-pattern/"
