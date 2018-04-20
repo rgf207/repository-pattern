@@ -1,4 +1,5 @@
 # OneThirtyOne/Repository-Pattern
+[![Build Status](https://travis-ci.org/rgf207/repository-pattern.svg?branch=master)](https://travis-ci.org/rgf207/repository-pattern)
 [![StyleCI](https://styleci.io/repos/130260748/shield?branch=master)](https://styleci.io/repos/130260748)
 
 Simple Artisan command to create repository pattern modules for Laravel application.  Run 
