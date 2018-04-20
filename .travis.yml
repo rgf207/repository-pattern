@@ -9,6 +9,7 @@ before_install:
   - cd ./laravel
   - composer config repositories.rgf207 vcs https://github.com/rgf207/repository-pattern.git
   - composer require onethirtyone/repository-pattern dev-master
+  - composer require --dev "orchestra/testbench=~3.0"
   - composer update
 
 script: "phpunit ./vendor/onethirtyone/repository-pattern/"
