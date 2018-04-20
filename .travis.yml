@@ -12,4 +12,4 @@ before_install:
   - composer update
   - cd ./vendor/onethirtyone/repository-pattern/tests
 
-script: "phpunit"
+script: "phpunit RepositoryTest.php"
