@@ -69,7 +69,11 @@ class RepositoryCommand extends Command
     public function makeModel()
     {
         if ($this->option('model')) {
-            Artisan::call('make:model', ['name' => $this->argument('name'), '--quiet' => true]);
+            Artisan::call('make:model', [
+                'name' => $this->argument('name'),
+                '--quiet' => true
+            ]);
+
             $this->comment('Model Created Successfully');
         }
 
@@ -88,8 +92,6 @@ class RepositoryCommand extends Command
                 $this->replaceValues($name),
                 file_get_contents($this->stubPath('Repository'))));
         }
-
-        $this->line('something happened');
 
         return false;
     }
